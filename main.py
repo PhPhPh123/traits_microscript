@@ -18,16 +18,21 @@ list_traits = [
     '+1 уворот в ход',
 
 ]
-final_list = []
 
-user_input = input()
-user_list = list(user_input.split())
-if user_list[0] == 'roll':
-    try:
-        with open('traits.txt', 'w', encoding='utf-8') as t:
-            num = int(user_list[1])
-            choisen_traits = sample(list_traits, k=int(num+2))
-            for elem in choisen_traits:
-                t.write(f'{elem}\n')
-    except:
-        print('Число должно быть целым')
+
+def script(traits):
+    user_input = input()
+    user_list = list(user_input.split())
+    if user_list[0] == 'roll':
+        try:
+            with open('traits.txt', 'w', encoding='utf-8') as t:
+                num = int(user_list[1])
+                choisen_traits = sample(traits, k=int(num+2))
+                for elem in choisen_traits:
+                    t.write(f'{elem}\n')
+        except:
+            print('Число должно быть целым')
+
+
+if __name__ == '__main__':
+    script(list_traits)
